@@ -16,6 +16,8 @@
         <activity
             android:name=".LoginActivity"
             android:exported="true"
+            android:theme="@style/Theme.PAB_2301.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
             android:label="Masuk">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,24 +29,31 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
+            android:theme="@style/Theme.PAB_2301.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
             android:label="Daftar Akun" />
 
         <!-- Reset Password -->
         <activity
             android:name=".ResetPasswordActivity"
             android:exported="false"
+            android:theme="@style/Theme.PAB_2301.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
             android:label="Reset Kata Sandi" />
 
         <!-- Halaman Utama (Home) -->
         <activity
             android:name=".HomeActivity"
             android:exported="false"
+            android:theme="@style/Theme.PAB_2301.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
             android:label="Halaman Utama" />
 
         <!-- Halaman Form Pendaftaran (Modul PAB Sebelumnya) -->
         <activity
             android:name=".activitymain"
             android:exported="false"
+            android:windowSoftInputMode="adjustResize"
             android:label="Form Pendaftaran" />
 
         <!-- Halaman Hasil (Modul PAB Sebelumnya) -->

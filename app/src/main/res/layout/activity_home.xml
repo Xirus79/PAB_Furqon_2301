@@ -1,124 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_light"
-    android:fillViewport="true">
+    android:orientation="vertical">
 
-    <LinearLayout
+    <!-- Fixed Top Bar -->
+    <RelativeLayout
+        android:id="@+id/topBar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_height="56dp"
+        android:background="@color/surface_white"
+        android:elevation="2dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
 
-        <!-- Header Card -->
+        <TextView
+            android:id="@+id/tvTopBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/title_home"
+            android:textColor="@color/text_primary"
+            android:textSize="19sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <!-- Content -->
+    <ScrollView
+        android:id="@+id/rootScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_card"
-            android:elevation="2dp"
-            android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="24dp">
 
-            <FrameLayout
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/bg_circle_icon">
-
-                <ImageView
-                    android:layout_width="44dp"
-                    android:layout_height="44dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_person"
-                    app:tint="@color/primary"
-                    tools:ignore="ContentDescription" />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/tvWelcomeTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/welcome_user"
-                android:textColor="@color/text_primary"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvUserEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="user@example.com"
-                android:textColor="@color/text_secondary"
-                android:textSize="15sp" />
-
-            <View
+            <!-- Header Card -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card"
+                android:elevation="2dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <FrameLayout
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_circle_icon">
+
+                    <ImageView
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_person"
+                        app:tint="@color/primary"
+                        tools:ignore="ContentDescription" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvWelcomeTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/welcome_user"
+                    android:textColor="@color/text_primary"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvUserEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="user@example.com"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="15sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/input_border" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status Akun: Aktif"
+                    android:textColor="@color/success"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Navigation Action Buttons Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/input_border" />
+                android:background="@drawable/bg_card"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Status Akun: Aktif"
-                android:textColor="@color/success"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="14dp"
+                    android:text="Menu Navigasi"
+                    android:textColor="@color/text_primary"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
-        <!-- Navigation Action Buttons Card -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_card"
-            android:elevation="2dp"
-            android:orientation="vertical"
-            android:padding="20dp">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnOpenForm"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginBottom="12dp"
+                    android:text="Buka Form Pendaftaran (Lab PAB)"
+                    android:textAllCaps="false"
+                    android:textColor="@color/primary"
+                    android:textSize="15sp"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/primary"
+                    app:strokeWidth="1.5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:text="Menu Navigasi"
-                android:textColor="@color/text_primary"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:backgroundTint="@color/danger"
+                    android:text="@string/btn_logout"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnOpenForm"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginBottom="12dp"
-                android:text="Buka Form Pendaftaran (Lab PAB)"
-                android:textAllCaps="false"
-                android:textColor="@color/primary"
-                android:textSize="15sp"
-                app:cornerRadius="12dp"
-                app:strokeColor="@color/primary"
-                app:strokeWidth="1.5dp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:backgroundTint="@color/danger"
-                android:text="@string/btn_logout"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:cornerRadius="12dp" />
+            </LinearLayout>
 
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

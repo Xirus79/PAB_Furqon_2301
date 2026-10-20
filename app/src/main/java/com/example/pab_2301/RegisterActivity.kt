@@ -2,18 +2,27 @@ package com.example.pab_2301
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import android.widget.ImageButton
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class RegisterActivity : AppCompatActivity() {
 
+    private lateinit var rootContainer: View
+    private lateinit var topBar: View
+    private lateinit var rootScrollView: ScrollView
     private lateinit var btnBack: ImageButton
     private lateinit var tilName: TextInputLayout
     private lateinit var edtName: TextInputEditText
@@ -31,10 +40,14 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         initViews()
+        setupKeyboardHandling()
         setupListeners()
     }
 
     private fun initViews() {
+        rootContainer = findViewById(R.id.rootContainer)
+        topBar = findViewById(R.id.topBar)
+        rootScrollView = findViewById(R.id.rootScrollView)
         btnBack = findViewById(R.id.btnBack)
         tilName = findViewById(R.id.tilName)
         edtName = findViewById(R.id.edtName)
@@ -46,6 +59,49 @@ class RegisterActivity : AppCompatActivity() {
         edtConfirmPassword = findViewById(R.id.edtConfirmPassword)
         btnRegister = findViewById(R.id.btnRegister)
         tvGoToLogin = findViewById(R.id.tvGoToLogin)
+    }
+
+    private fun setupKeyboardHandling() {
+        // Menangani Insets: TopBar aman dari notch status bar, dan ScrollView menyesuaikan tinggi keyboard
+        ViewCompat.setOnApplyWindowInsetsListener(rootContainer) { _, windowInsets ->
+            val systemBars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val ime = windowInsets.getInsets(WindowInsetsCompat.Type.ime())
+
+            // Atur padding atas topBar agar tidak tertimpa status bar
+            topBar.updatePadding(
+                left = systemBars.left,
+                top = systemBars.top,
+                right = systemBars.right
+            )
+
+            // Atur padding bawah scrollview setinggi keyboard atau navigasi
+            val bottomInset = if (ime.bottom > 0) ime.bottom else systemBars.bottom
+            rootScrollView.updatePadding(
+                left = systemBars.left,
+                right = systemBars.right,
+                bottom = bottomInset
+            )
+
+            windowInsets
+        }
+
+        // Memastikan field yang sedang difokuskan otomatis ter-scroll ke tengah layar
+        val focusListener = View.OnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                rootScrollView.postDelayed({
+                    val rect = Rect()
+                    view.getDrawingRect(rect)
+                    rootScrollView.offsetDescendantRectToMyCoords(view, rect)
+                    rect.bottom += 120
+                    rootScrollView.requestChildRectangleOnScreen(view, rect, true)
+                }, 200)
+            }
+        }
+
+        edtName.onFocusChangeListener = focusListener
+        edtEmail.onFocusChangeListener = focusListener
+        edtPassword.onFocusChangeListener = focusListener
+        edtConfirmPassword.onFocusChangeListener = focusListener
     }
 
     private fun setupListeners() {

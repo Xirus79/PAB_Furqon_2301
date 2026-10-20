@@ -3,6 +3,7 @@ package com.example.pab_2301
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -11,12 +12,29 @@ import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 
 class activitymain : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activitymain)
+
+        val rootScrollView = findViewById<View>(R.id.rootScrollView)
+        ViewCompat.setOnApplyWindowInsetsListener(rootScrollView) { view, windowInsets ->
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+            )
+            view.updatePadding(
+                left = insets.left,
+                top = insets.top,
+                right = insets.right,
+                bottom = insets.bottom
+            )
+            windowInsets
+        }
 
         val edtNama = findViewById<EditText>(R.id.edtNama)
         val rgjk = findViewById<RadioGroup>(R.id.rgjk)

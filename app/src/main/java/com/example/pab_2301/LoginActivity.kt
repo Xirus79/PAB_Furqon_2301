@@ -2,18 +2,25 @@ package com.example.pab_2301
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class LoginActivity : AppCompatActivity() {
 
+    private lateinit var rootScrollView: ScrollView
     private lateinit var tilEmail: TextInputLayout
     private lateinit var edtEmail: TextInputEditText
     private lateinit var tilPassword: TextInputLayout
@@ -41,10 +48,12 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         initViews()
+        setupKeyboardHandling()
         setupListeners()
     }
 
     private fun initViews() {
+        rootScrollView = findViewById(R.id.rootScrollView)
         tilEmail = findViewById(R.id.tilEmail)
         edtEmail = findViewById(R.id.edtEmail)
         tilPassword = findViewById(R.id.tilPassword)
@@ -52,6 +61,39 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
         tvForgotPassword = findViewById(R.id.tvForgotPassword)
         tvGoToRegister = findViewById(R.id.tvGoToRegister)
+    }
+
+    private fun setupKeyboardHandling() {
+        // Menyesuaikan padding saat keyboard (IME) atau system bars muncul di Android 15+
+        ViewCompat.setOnApplyWindowInsetsListener(rootScrollView) { view, windowInsets ->
+            val systemBars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val ime = windowInsets.getInsets(WindowInsetsCompat.Type.ime())
+
+            val bottomInset = if (ime.bottom > 0) ime.bottom else systemBars.bottom
+            view.updatePadding(
+                left = systemBars.left,
+                top = systemBars.top,
+                right = systemBars.right,
+                bottom = bottomInset
+            )
+            windowInsets
+        }
+
+        // Memastikan field yang sedang difokuskan otomatis ter-scroll agar tidak tertutup keyboard
+        val focusListener = View.OnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                rootScrollView.postDelayed({
+                    val rect = Rect()
+                    view.getDrawingRect(rect)
+                    rootScrollView.offsetDescendantRectToMyCoords(view, rect)
+                    rect.bottom += 120 // Beri ruang ekstra ke bawah agar tombol/link di bawahnya ikut terlihat
+                    rootScrollView.requestChildRectangleOnScreen(view, rect, true)
+                }, 200)
+            }
+        }
+
+        edtEmail.onFocusChangeListener = focusListener
+        edtPassword.onFocusChangeListener = focusListener
     }
 
     private fun setupListeners() {
