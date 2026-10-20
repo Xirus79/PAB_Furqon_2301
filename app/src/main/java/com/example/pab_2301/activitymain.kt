@@ -21,7 +21,7 @@ class activitymain : AppCompatActivity() {
         val edtNama = findViewById<EditText>(R.id.edtNama)
         val rgjk = findViewById<RadioGroup>(R.id.rgjk)
         val spkota = findViewById<Spinner>(R.id.spkota)
-        val swmenyetujui = findViewById<Switch>(R.id.swmenyutujui) /
+        val swmenyetujui = findViewById<Switch>(R.id.swmenyutujui)
         val btnsimpan = findViewById<Button>(R.id.btn_simpan)
 
         val kota = arrayOf("Pilih Kota", "Jakarta", "Bandung", "Surabaya", "Padang")
@@ -42,8 +42,8 @@ class activitymain : AppCompatActivity() {
             }
 
             val jk = when (rgjk.checkedRadioButtonId) {
-                R.id.rblaki -> "Laki-Laki"
-                R.id.rbperempuan -> "Perempuan"
+                R.id.rdlaki -> "Laki-Laki"
+                R.id.rdperempuan -> "Perempuan"
                 else -> "Belum Dipilih"
             }
 

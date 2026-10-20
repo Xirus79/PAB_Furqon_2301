@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">PAB_2301</string>
+    
+    <!-- Auth Strings -->
+    <string name="title_login">Selamat Datang</string>
+    <string name="subtitle_login">Silakan masuk ke akun Anda</string>
+    <string name="label_email">Email</string>
+    <string name="hint_email">nama@contoh.com</string>
+    <string name="label_password">Kata Sandi</string>
+    <string name="hint_password">Masukkan kata sandi</string>
+    <string name="btn_login">Masuk</string>
+    <string name="forgot_password">Lupa Kata Sandi?</string>
+    <string name="no_account">Belum punya akun? Daftar sekarang</string>
+    
+    <string name="title_register">Daftar Akun</string>
+    <string name="subtitle_register">Lengkapi formulir untuk membuat akun baru</string>
+    <string name="label_fullname">Nama Lengkap</string>
+    <string name="hint_fullname">Masukkan nama lengkap</string>
+    <string name="label_confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="hint_confirm_password">Ulangi kata sandi</string>
+    <string name="btn_register">Daftar Sekarang</string>
+    <string name="have_account">Sudah punya akun? Masuk</string>
+    
+    <string name="title_reset_password">Reset Kata Sandi</string>
+    <string name="subtitle_reset_password">Masukkan alamat email Anda untuk menerima instruksi pemulihan kata sandi.</string>
+    <string name="btn_reset_password">Kirim Link Pemulihan</string>
+    <string name="back_to_login">Kembali ke Halaman Masuk</string>
+    
+    <!-- Home Strings -->
+    <string name="title_home">Halaman Utama</string>
+    <string name="welcome_user">Selamat Datang</string>
+    <string name="btn_logout">Keluar (Logout)</string>
 </resources>

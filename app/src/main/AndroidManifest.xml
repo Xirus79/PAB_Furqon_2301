@@ -12,15 +12,46 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PAB_2301">
 
-        <!--        Layout Activity Main    -->
-        <activity android:name=".activitymain"
-            android:exported="true">
+        <!-- Login (Halaman Pertama / Launcher) -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="Masuk">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DuaActivity"/>
+
+        <!-- Registrasi -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:label="Daftar Akun" />
+
+        <!-- Reset Password -->
+        <activity
+            android:name=".ResetPasswordActivity"
+            android:exported="false"
+            android:label="Reset Kata Sandi" />
+
+        <!-- Halaman Utama (Home) -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:label="Halaman Utama" />
+
+        <!-- Halaman Form Pendaftaran (Modul PAB Sebelumnya) -->
+        <activity
+            android:name=".activitymain"
+            android:exported="false"
+            android:label="Form Pendaftaran" />
+
+        <!-- Halaman Hasil (Modul PAB Sebelumnya) -->
+        <activity
+            android:name=".DuaActivity"
+            android:exported="false"
+            android:label="Hasil Pendaftaran" />
     </application>
 
 </manifest>
